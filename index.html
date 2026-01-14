@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kempo Shop - Healthy Living</title>
+  <meta name="description" content="Kempo Shop - Authentic Japanese Health Products including Bamboo Charcoal, Green Tea, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-top">
+        <a href="/" class="logo">Kempo Shop</a>
+        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+          ☰
+        </button>
+      </div>
+      <nav id="main-nav" class="main-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Company</a></li>
+          <li><a href="#">Usage Guide</a></li>
+          <li><a href="#">Members</a></li>
+          <li><a href="#">Cart (0)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Natural Living, Healthy Life</h1>
+      <p>Discover our range of bamboo charcoal and organic Japanese products.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul id="category-list" class="sidebar-menu">
+        <!-- Injected via JS -->
+      </ul>
+      
+      <div style="margin-top: 2rem; padding: 1rem; background: #FFFCEA; border: 1px solid #ddd; text-align: center;">
+        <h4>Member Login</h4>
+        <input type="text" placeholder="ID" style="width: 100%; margin: 5px 0; padding: 5px;">
+        <input type="password" placeholder="Password" style="width: 100%; margin: 5px 0; padding: 5px;">
+        <button class="btn-primary" style="padding: 5px; margin-top: 5px;">Login</button>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <div id="product-grid" class="product-grid">
+      <!-- Injected via JS -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Kempo Shop delivers the finest Japanese health products directly to your doorstep.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Phone: 0120-XXX-XXX</p>
+        <p>Email: support@kempo-shop.com</p>
+      </div>
+      <div class="footer-section">
+        <h4>Policies</h4>
+        <ul>
+          <li>Shipping Policy</li>
+          <li>Returns</li>
+          <li>Privacy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container" style="text-align: center; margin-top: 2rem; color: #999;">
+      &copy; 2026 Kempo Shop. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div id="product-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <div id="modal-details" style="display: contents;">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>
