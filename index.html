@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kempo Shop - Healthy Living</title>
-  <meta name="description" content="Kempo Shop - Authentic Japanese Health Products including Bamboo Charcoal, Green Tea, and more.">
+  <meta name="description"
+    content="Kempo Shop - Authentic Japanese Health Products including Bamboo Charcoal, Green Tea, and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/style.css">
 </head>
+
 <body>
 
   <!-- Header -->
@@ -17,9 +20,13 @@
     <div class="container">
       <div class="header-top">
         <a href="/" class="logo">Kempo Shop</a>
-        <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-          ☰
-        </button>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <button id="lang-toggle"
+            style="background:none; border:1px solid #ddd; padding:0.5rem; cursor:pointer; border-radius:4px;">English</button>
+          <button id="login-btn"
+            style="background:var(--color-primary); color:white; border:none; padding:0.5rem 1rem; cursor:pointer; border-radius:4px; font-weight:bold;">Login</button>
+          <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
       </div>
       <nav id="main-nav" class="main-nav">
         <ul>
@@ -36,8 +43,8 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1>Natural Living, Healthy Life</h1>
-      <p>Discover our range of bamboo charcoal and organic Japanese products.</p>
+      <h1 id="hero-title">Natural Living, Healthy Life</h1>
+      <p id="hero-subtitle">Discover our range of bamboo charcoal and organic Japanese products.</p>
     </div>
   </section>
 
@@ -45,17 +52,11 @@
   <main class="container app-layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h3>Categories</h3>
+      <h3 id="cat-title">Categories</h3>
       <ul id="category-list" class="sidebar-menu">
         <!-- Injected via JS -->
       </ul>
-      
-      <div style="margin-top: 2rem; padding: 1rem; background: #FFFCEA; border: 1px solid #ddd; text-align: center;">
-        <h4>Member Login</h4>
-        <input type="text" placeholder="ID" style="width: 100%; margin: 5px 0; padding: 5px;">
-        <input type="password" placeholder="Password" style="width: 100%; margin: 5px 0; padding: 5px;">
-        <button class="btn-primary" style="padding: 5px; margin-top: 5px;">Login</button>
-      </div>
+      <!-- Login form removed from here for UX improvement -->
     </aside>
 
     <!-- Product Grid -->
@@ -100,6 +101,22 @@
     </div>
   </div>
 
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 400px; display: block; text-align: center;">
+      <button class="close-modal">&times;</button>
+      <h2 style="color:var(--color-primary); margin-bottom:1.5rem;">Member Login</h2>
+      <input type="text" placeholder="ID / ID"
+        style="width: 100%; margin: 10px 0; padding: 10px; border:1px solid #ddd; border-radius:4px;">
+      <input type="password" placeholder="Password / パスワード"
+        style="width: 100%; margin: 10px 0; padding: 10px; border:1px solid #ddd; border-radius:4px;">
+      <button class="btn-primary" style="margin-top: 1rem;">Login</button>
+      <p style="margin-top:1rem; font-size:0.8rem; color:#666;">Don't have an account? <a href="#"
+          style="color:var(--color-primary); text-decoration:underline;">Register here</a></p>
+    </div>
+  </div>
+
   <script type="module" src="scripts/app.js"></script>
 </body>
+
 </html>

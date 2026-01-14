@@ -4,9 +4,12 @@ A modern, responsive duplication and improvement of the original [Kempo Shop](ht
 
 ## Features
 - **Responsive Design:** Fully functional on Mobile, Tablet, and Desktop.
-- **Modern Interactions:** Smooth modal popups for product details and dynamic filtering.
+- **Internationalization (i18n):** Toggle between Japanese (Default) and English.
+- **Modern Interactions:** Smooth modal popups for product details and login.
 - **No-Build Architecture:** Built with Vanilla JS and CSS variables; runs natively in the browser.
-- **Improved UX:** Sticky header, clear typography, and touch-friendly targets.
+- **Improved UX:** 
+    - Guest-first experience (no forced login).
+    - Sticky header, clear typography, and touch-friendly targets.
 
 ## Quick Start
 1. Clone the repository.
