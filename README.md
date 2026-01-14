@@ -1,21 +1,26 @@
 # Kempo Shop Rebuild
 
-A modern, responsive duplication and improvement of the original [Kempo Shop](https://kempo-shop.com/). This project modernizes the design with a clean, responsive layout while retaining the original brand identity.
+A modern, responsive rebuild of [Kempo Shop](https://kempo-shop.com/) - a Japanese natural health products store.
 
 ## Features
-- **Responsive Design:** Fully functional on Mobile, Tablet, and Desktop.
-- **Internationalization (i18n):** Toggle between Japanese (Default) and English.
-- **Modern Interactions:** Smooth modal popups for product details and login.
-- **No-Build Architecture:** Built with Vanilla JS and CSS variables; runs natively in the browser.
-- **Improved UX:** 
-    - Guest-first experience (no forced login).
-    - Sticky header, clear typography, and touch-friendly targets.
+- **Full Product Catalog**: 22+ products across 9 categories, with accurate pricing
+- **Bilingual Support**: Japanese (default) and English with instant toggle
+- **Fully Responsive**: Optimized layouts for Desktop, Tablet, and Mobile
+- **Working Navigation**: All nav items functional (Company, Guide, Products, Cart)
+- **Interactive UI**: Product modals, category filtering, login flow
 
 ## Quick Start
-1. Clone the repository.
-2. Open `index.html` in your browser.
-3. Check the `ARCHITECTURE.md` file to understand the code structure.
+1. Clone the repository
+2. Open `index.html` in any modern browser
+3. Or run a local server: `python -m http.server 8000`
 
-## Deployment
-This site is ready for GitHub Pages.
-Simply push to your repository and enable GitHub Pages from the settings (Source: `main` branch, folder: `/`).
+## Live Demo
+[https://alartist40.github.io/kempo-shop/](https://alartist40.github.io/kempo-shop/)
+
+## Architecture
+See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed code structure.
+
+## Tech Stack
+- Vanilla JavaScript (ES6 Modules)
+- CSS3 (Variables, Grid, Flexbox)
+- No build tools required

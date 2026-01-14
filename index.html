@@ -4,12 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kempo Shop - Healthy Living</title>
-  <meta name="description"
-    content="Kempo Shop - Authentic Japanese Health Products including Bamboo Charcoal, Green Tea, and more.">
+  <title>健歩 - 自然健康食品</title>
+  <meta name="description" content="健歩 - 自然健康増進。竹炭製品、オーガニック食品、健康サプリメントの専門店。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/style.css">
 </head>
 
@@ -19,22 +18,20 @@
   <header class="site-header">
     <div class="container">
       <div class="header-top">
-        <a href="/" class="logo">Kempo Shop</a>
-        <div style="display: flex; gap: 1rem; align-items: center;">
-          <button id="lang-toggle"
-            style="background:none; border:1px solid #ddd; padding:0.5rem; cursor:pointer; border-radius:4px;">English</button>
-          <button id="login-btn"
-            style="background:var(--color-primary); color:white; border:none; padding:0.5rem 1rem; cursor:pointer; border-radius:4px; font-weight:bold;">Login</button>
+        <a href="/" class="logo">健歩 Kempo</a>
+        <div class="header-actions">
+          <button id="lang-toggle" class="btn-lang">English</button>
+          <button id="login-btn" class="btn-login">ログイン</button>
           <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
         </div>
       </div>
       <nav id="main-nav" class="main-nav">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Company</a></li>
-          <li><a href="#">Usage Guide</a></li>
-          <li><a href="#">Members</a></li>
-          <li><a href="#">Cart (0)</a></li>
+          <li><a href="#" id="nav-home">ホーム</a></li>
+          <li><a href="#" id="nav-company">会社概要</a></li>
+          <li><a href="#" id="nav-guide">ご利用案内</a></li>
+          <li><a href="#" id="nav-register">会員登録</a></li>
+          <li><a href="#" id="nav-cart">カート</a></li>
         </ul>
       </nav>
     </div>
@@ -43,8 +40,8 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1 id="hero-title">Natural Living, Healthy Life</h1>
-      <p id="hero-subtitle">Discover our range of bamboo charcoal and organic Japanese products.</p>
+      <h1 id="hero-title">自然健康増進</h1>
+      <p id="hero-subtitle">Uchee Pines Institute（米国）からの医学情報とお客様のフィードバックに基づいて厳選された製品。</p>
     </div>
   </section>
 
@@ -52,42 +49,39 @@
   <main class="container app-layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h3 id="cat-title">Categories</h3>
-      <ul id="category-list" class="sidebar-menu">
-        <!-- Injected via JS -->
-      </ul>
-      <!-- Login form removed from here for UX improvement -->
+      <h3 id="cat-title">カテゴリー</h3>
+      <ul id="category-list" class="sidebar-menu"></ul>
     </aside>
 
     <!-- Product Grid -->
-    <div id="product-grid" class="product-grid">
-      <!-- Injected via JS -->
-    </div>
+    <div id="product-grid" class="product-grid"></div>
   </main>
 
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="container footer-content">
-      <div class="footer-section">
-        <h4>About Us</h4>
-        <p>Kempo Shop delivers the finest Japanese health products directly to your doorstep.</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 id="footer-about-title">健歩について</h4>
+          <p id="footer-about-text">2003年設立。健康に本当に役立つ製品を、適正価格で厳選してお届けしています。</p>
+        </div>
+        <div class="footer-section">
+          <h4 id="footer-contact-title">お問い合わせ</h4>
+          <p>TEL: 0120-XXX-XXX</p>
+          <p>Email: support@kempo-shop.com</p>
+        </div>
+        <div class="footer-section">
+          <h4 id="footer-policies-title">ご案内</h4>
+          <ul>
+            <li id="footer-shipping">配送について</li>
+            <li id="footer-returns">返品について</li>
+            <li id="footer-privacy">プライバシーポリシー</li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-section">
-        <h4>Contact</h4>
-        <p>Phone: 0120-XXX-XXX</p>
-        <p>Email: support@kempo-shop.com</p>
+      <div class="footer-bottom">
+        © 2026 健歩. All rights reserved.
       </div>
-      <div class="footer-section">
-        <h4>Policies</h4>
-        <ul>
-          <li>Shipping Policy</li>
-          <li>Returns</li>
-          <li>Privacy</li>
-        </ul>
-      </div>
-    </div>
-    <div class="container" style="text-align: center; margin-top: 2rem; color: #999;">
-      &copy; 2026 Kempo Shop. All rights reserved.
     </div>
   </footer>
 
@@ -95,24 +89,38 @@
   <div id="product-modal" class="modal-overlay">
     <div class="modal-content">
       <button class="close-modal">&times;</button>
-      <div id="modal-details" style="display: contents;">
-        <!-- Injected via JS -->
-      </div>
+      <div id="modal-details"></div>
     </div>
   </div>
 
   <!-- Login Modal -->
   <div id="login-modal" class="modal-overlay">
-    <div class="modal-content" style="max-width: 400px; display: block; text-align: center;">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
       <button class="close-modal">&times;</button>
-      <h2 style="color:var(--color-primary); margin-bottom:1.5rem;">Member Login</h2>
-      <input type="text" placeholder="ID / ID"
-        style="width: 100%; margin: 10px 0; padding: 10px; border:1px solid #ddd; border-radius:4px;">
-      <input type="password" placeholder="Password / パスワード"
-        style="width: 100%; margin: 10px 0; padding: 10px; border:1px solid #ddd; border-radius:4px;">
-      <button class="btn-primary" style="margin-top: 1rem;">Login</button>
-      <p style="margin-top:1rem; font-size:0.8rem; color:#666;">Don't have an account? <a href="#"
-          style="color:var(--color-primary); text-decoration:underline;">Register here</a></p>
+      <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">会員ログイン</h2>
+      <input type="text" placeholder="メールアドレス / ID"
+        style="width: 100%; margin: 10px 0; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;">
+      <input type="password" placeholder="パスワード"
+        style="width: 100%; margin: 10px 0; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;">
+      <button class="btn-primary" style="margin-top: 1rem;">ログイン</button>
+      <p style="margin-top: 1.5rem; font-size: 0.875rem; color: #666;">アカウントをお持ちでないですか？ <a href="#"
+          style="color: var(--color-primary); text-decoration: underline;">新規登録</a></p>
+    </div>
+  </div>
+
+  <!-- Company Modal -->
+  <div id="company-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 500px;">
+      <button class="close-modal">&times;</button>
+      <div id="company-content"></div>
+    </div>
+  </div>
+
+  <!-- Guide Modal -->
+  <div id="guide-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 500px;">
+      <button class="close-modal">&times;</button>
+      <div id="guide-content"></div>
     </div>
   </div>
 

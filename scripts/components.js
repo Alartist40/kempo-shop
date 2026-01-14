@@ -1,7 +1,8 @@
-import { products, translations } from './data.js';
+import { products, categories, translations } from './data.js';
 
 export function createProductCard(product, lang = 'ja') {
   const content = product[lang];
+  const t = translations[lang];
   const div = document.createElement('div');
   div.className = 'product-card';
   div.dataset.id = product.id;
@@ -10,21 +11,21 @@ export function createProductCard(product, lang = 'ja') {
       <img src="${product.image}" alt="${content.name}" loading="lazy">
     </div>
     <div class="product-info">
-      <div class="product-category">${content.category}</div>
+      <span class="product-category">${content.category}</span>
       <h3 class="product-title">${content.name}</h3>
-      <div class="product-price">¥${product.price.toLocaleString()}</div>
+      <div class="product-price">¥${product.price.toLocaleString()} <small>${t.taxIncluded}</small></div>
     </div>
   `;
   return div;
 }
 
-export function createSidebarCategories(products, lang = 'ja') {
-  // Extract unique categories based on current language
-  const categories = [...new Set(products.map(p => p[lang].category))];
-
-  return categories.map(cat => `
-    <li><a href="#" data-category="${cat}">${cat}</a></li>
+export function createSidebarCategories(lang = 'ja') {
+  const t = translations[lang];
+  let html = `<li><a href="#" data-category="all" class="active">${t.allProducts}</a></li>`;
+  html += categories.map(cat => `
+    <li><a href="#" data-category="${cat.id}">${cat[lang]}</a></li>
   `).join('');
+  return html;
 }
 
 export function openProductModal(productId, lang = 'ja') {
@@ -38,24 +39,29 @@ export function openProductModal(productId, lang = 'ja') {
   const detailsContainer = document.getElementById('modal-details');
 
   detailsContainer.innerHTML = `
-    <div class="modal-left">
-      <img src="${product.image}" alt="${content.name}" style="width:100%; border-radius:8px;">
+    <div class="modal-image">
+      <img src="${product.image}" alt="${content.name}">
     </div>
-    <div class="modal-right">
-      <small style="color:var(--color-primary); font-weight:bold;">${content.category}</small>
-      <h2 style="margin: 0.5rem 0;">${content.name}</h2>
-      <h3 style="color:var(--color-accent); font-size:1.5rem; margin-bottom:1rem;">¥${product.price.toLocaleString()}</h3>
-      <p>${content.description}</p>
+    <div class="modal-info">
+      <span class="product-category">${content.category}</span>
+      <h2>${content.name}</h2>
+      <p class="modal-price">¥${product.price.toLocaleString()} <small>${t.taxIncluded}</small></p>
+      <p class="modal-description">${content.description}</p>
       
-      <div style="margin-top: 2rem; padding: 1rem; background: #f5f5f5; border-radius: 4px;">
-        <label style="display:block; margin-bottom:0.5rem;">${t.quantity}</label>
-        <input type="number" value="1" min="1" style="padding:0.5rem; width:60px; margin-right:1rem;">
-        <span style="font-size:0.8rem; color:#666;">${t.inStock}</span>
+      <div class="quantity-selector">
+        <label>${t.quantity}</label>
+        <input type="number" value="1" min="1" id="qty-input">
+        <span class="stock-status">${t.inStock}</span>
       </div>
 
-      <button class="btn-primary" onclick="alert('${lang === 'ja' ? 'カートに追加されました！' : 'Added to cart!'}')">${t.addToCart}</button>
+      <button class="btn-primary" id="add-to-cart-btn">${t.addToCart}</button>
     </div>
   `;
+
+  document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+    const qty = document.getElementById('qty-input').value;
+    alert(lang === 'ja' ? `${qty}個をカートに追加しました！` : `Added ${qty} to cart!`);
+  });
 
   overlay.classList.add('active');
 }

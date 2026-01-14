@@ -1,46 +1,69 @@
-# Kempo Shop Rebuild - Architecture Guide
+# Architecture Guide
+
+This document explains the codebase structure for developers new to the project.
 
 ## Overview
-This project is a modern, responsive rebuild of the Kempo Shop website. It is designed to run natively in any modern web browser without the need for a build step (No-Build methodology), utilizing ES Modules and standard CSS variables.
-
-## Technical Goals
-- **Responsiveness**: Support Mobile (<768px), Tablet, and Desktop layouts.
-- **Performance**: Minimal dependencies, pure Vanilla JS.
-- **Maintainability**: Modular code structure separating Data, UI, and Logic.
+Kempo Shop is a static website built with Vanilla JS that mimics a dynamic e-commerce experience. It requires no build step and runs directly in modern browsers.
 
 ## Directory Structure
 ```
 kempo-shop/
-├── index.html          # Single Entry Point. Contains the HTML skeleton.
+├── index.html          # Main entry point
 ├── styles/
-│   └── style.css       # The centralized stylesheet.
+│   └── style.css       # All styles (variables, components, responsive)
 ├── scripts/
-│   ├── app.js          # Main controller. Handles event listeners and initialization.
-│   ├── components.js   # UI Library. Functions that return HTML template strings or DOM elements.
-│   ├── data.js         # Mock Database. Exports JSON-like objects for products/categories.
-└── assets/             # Images and static files.
+│   ├── app.js          # Main controller (event handling, state)
+│   ├── components.js   # UI generators (cards, modals, categories)
+│   └── data.js         # Product catalog and translations
+└── assets/             # Images (placeholder for now)
 ```
 
-## Key Components
+## Key Files
 
-### 1. Global Styles (`styles/style.css`)
-- **CSS Variables**: We use root variables (e.g., `--color-primary`, `--spacing-md`) to ensure consistency with the original brand colors.
-- **Grid Layout**: The main layout uses `display: grid` to manage the Sidebar and Product Grid relationship.
-- **Media Queries**:
-    - `@media (max-width: 768px)`: Switches navigation to a hamburger menu and stacks the grid to a single column.
+### `scripts/data.js`
+Contains all static data:
+- `products[]` - Array of product objects with bilingual content
+- `categories[]` - Category definitions with IDs
+- `translations{}` - UI strings for Japanese and English
 
-### 2. Data Layer (`scripts/data.js`)
-- A simple JavaScript file exporting arrays (`products`, `categories`). This mimics a database response and allows for instant loading without a backend.
+### `scripts/components.js`
+Pure functions that generate HTML:
+- `createProductCard(product, lang)` - Returns DOM element
+- `createSidebarCategories(lang)` - Returns HTML string
+- `openProductModal(id, lang)` - Populates and shows modal
 
-### 3. Component Layer (`scripts/components.js`)
-- **Pure Functions**: Components like `createProductCard(product)` take data and return a DOM element. This makes them easy to test and reuse.
-- **Modal System**: `openProductModal(id)` dynamically populates the modal container with data found by ID, handling the "View Details" interaction.
+### `scripts/app.js`
+Application state and event handling:
+- `currentLang` - Tracks selected language
+- `currentCategory` - Tracks selected filter
+- `renderApp()` - Re-renders all dynamic content
+- Event listeners for nav, filters, modals
 
-### 4. Application Logic (`scripts/app.js`)
-- **Event Delegation**: We attach listeners to the parent containers (like the grid or nav) rather than every single element where possible, improving performance.
-- **Dynamic Rendering**: On load, it fetches data and appends the generated components to the DOM.
+### `styles/style.css`
+CSS structure:
+1. **Variables**: Colors, spacing, typography
+2. **Base Reset**: Box-sizing, font defaults
+3. **Layout**: Header, Hero, Grid system
+4. **Components**: Cards, Modals, Sidebar
+5. **Responsive**: Media queries at 900px, 768px, 480px
+
+## State Management
+Simple module-level variables track state:
+```js
+let currentLang = 'ja';     // 'ja' or 'en'
+let currentCategory = 'all'; // 'all' or category ID
+```
+
+When state changes, `renderApp()` or `renderProducts()` is called to update the DOM.
+
+## Adding New Products
+1. Open `scripts/data.js`
+2. Add a new object to the `products[]` array
+3. Include `id`, `categoryId`, `price`, `image`, and `ja`/`en` content
 
 ## Deployment
-This architecture requires **no build process**.
-1. To deploy, simply upload the root directory to any static host (GitHub Pages, Netlify, Vercel).
-2. The site works immediately.
+Static files only - deploy to any host:
+- GitHub Pages (current)
+- Netlify
+- Vercel
+- Any web server

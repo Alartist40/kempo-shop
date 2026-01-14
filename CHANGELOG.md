@@ -1,25 +1,29 @@
 # Changelog
 
-All notable changes to the Kempo Shop Rebuild project will be documented in this file.
+All notable changes to the Kempo Shop Rebuild project.
+
+## [1.2.0] - 2026-01-15
+### Added
+- **Comprehensive Product Catalog**: 22 products across 9 categories from original site
+- **Working Navigation**: Company, Guide, Register, Cart links now functional
+- **Content Modals**: Company info and Usage Guide displayed in modals
+- **Category Filtering**: Sidebar filters products by category
+
+### Changed
+- **Mobile UX**: Smaller product cards, better whitespace, improved proportions
+- **CSS**: Added responsive breakpoints for 480px, 768px, 900px
+- **Data Structure**: Categories now have IDs for filtering support
 
 ## [1.1.0] - 2026-01-15
 ### Added
-- **Internationalization:** Added bilingual support (Japanese/English) with a toggle switch.
-- **Login Modal:** Moved member login to a modal to improve initial user engagement.
+- Internationalization (Japanese default, English toggle)
+- Login moved to modal
 
 ### Changed
-- **UX:** Removed sidebar login form to declutter the interface and prioritize product visibility.
-- **Data:** Refactored `data.js` to support multi-language strings.
+- Removed sidebar login form to improve UX
 
 ## [1.0.0] - 2026-01-15
 ### Added
-- **Responsive Core:** Implemented CSS Grid/Flexbox layout for full mobile responsiveness.
-- **Design System:** Created `styles/style.css` with variable-based color palette derived from the original site.
-- **Components:** Built modular JavaScript components for Product Cards, Sidebar, and Modals.
-- **Mock Data:** Implemented `scripts/data.js` to simulate database responses.
-- **Interaction:** Added product detail modals and category filtering.
-- **Documentation:** Added `ARCHITECTURE.md` for developer guidance.
-
-### Improved
-- **Visuals:** Modernized typography (Noto Sans JP) and spacing.
-- **Navigation:** Added mobile hamburger menu.
+- Initial responsive rebuild with CSS Grid/Flexbox
+- Product cards with hover effects
+- Mobile hamburger navigation
