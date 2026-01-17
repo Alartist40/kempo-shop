@@ -159,36 +159,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderCompanyModal() {
         const t = translations[currentLang];
+        const modalContent = companyModal.querySelector('.modal-content');
         const container = document.getElementById('company-content');
+        const titleId = 'company-modal-title';
+        const descId = 'company-modal-desc';
+
         container.innerHTML = `
-      <h2>${t.aboutUsTitle}</h2>
-      <h3>${t.companyName}</h3>
+      <h2 id="${titleId}">${t.aboutUsTitle}</h2>
+      <h3 id="${descId}">${t.companyName}</h3>
       <p>${t.ceo}</p>
       <p>${t.established}</p>
       <hr style="margin: 1rem 0;">
       <p>${t.aboutUsText}</p>
     `;
+        modalContent.setAttribute('aria-labelledby', titleId);
+        modalContent.setAttribute('aria-describedby', descId);
     }
 
     function renderGuideModal() {
         const t = translations[currentLang];
+        const modalContent = guideModal.querySelector('.modal-content');
         const container = document.getElementById('guide-content');
+        const titleId = 'guide-modal-title';
+        const descId = 'guide-modal-desc';
+
         container.innerHTML = currentLang === 'ja' ? `
-      <h2>ご利用案内</h2>
-      <h3>お支払い方法</h3>
+      <h2 id="${titleId}">ご利用案内</h2>
+      <h3 id="${descId}">お支払い方法</h3>
       <p>クレジットカード、銀行振込、代金引換をご利用いただけます。</p>
       <h3>配送について</h3>
       <p>ご注文確認後、3〜5営業日以内に発送いたします。</p>
       <h3>返品・交換</h3>
       <p>商品到着後7日以内にご連絡ください。</p>
     ` : `
-      <h2>Usage Guide</h2>
-      <h3>Payment Methods</h3>
+      <h2 id="${titleId}">Usage Guide</h2>
+      <h3 id="${descId}">Payment Methods</h3>
       <p>We accept credit cards, bank transfers, and cash on delivery.</p>
       <h3>Shipping</h3>
       <p>Orders ship within 3-5 business days after confirmation.</p>
       <h3>Returns & Exchanges</h3>
       <p>Please contact us within 7 days of receiving your order.</p>
     `;
+        modalContent.setAttribute('aria-labelledby', titleId);
+        modalContent.setAttribute('aria-describedby', descId);
     }
 });
