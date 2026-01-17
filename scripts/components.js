@@ -36,7 +36,11 @@ export function openProductModal(productId, lang = 'ja') {
   const t = translations[lang];
 
   const overlay = document.getElementById('product-modal');
+  const modalContent = overlay.querySelector('.modal-content');
   const detailsContainer = document.getElementById('modal-details');
+
+  const titleId = `modal-title-${product.id}`;
+  const descriptionId = `modal-desc-${product.id}`;
 
   detailsContainer.innerHTML = `
     <div class="modal-image">
@@ -44,9 +48,9 @@ export function openProductModal(productId, lang = 'ja') {
     </div>
     <div class="modal-info">
       <span class="product-category">${content.category}</span>
-      <h2>${content.name}</h2>
+      <h2 id="${titleId}">${content.name}</h2>
       <p class="modal-price">¥${product.price.toLocaleString()} <small>${t.taxIncluded}</small></p>
-      <p class="modal-description">${content.description}</p>
+      <p id="${descriptionId}" class="modal-description">${content.description}</p>
       
       <div class="quantity-selector">
         <label>${t.quantity}</label>
@@ -57,6 +61,9 @@ export function openProductModal(productId, lang = 'ja') {
       <button class="btn-primary" id="add-to-cart-btn">${t.addToCart}</button>
     </div>
   `;
+
+  modalContent.setAttribute('aria-labelledby', titleId);
+  modalContent.setAttribute('aria-describedby', descriptionId);
 
   document.getElementById('add-to-cart-btn').addEventListener('click', () => {
     const qty = document.getElementById('qty-input').value;
