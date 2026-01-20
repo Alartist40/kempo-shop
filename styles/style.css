@@ -415,6 +415,61 @@ img {
   background-color: var(--color-primary-dark);
 }
 
+/* Login Modal Specific Styles */
+#login-modal .modal-content {
+  max-width: 400px;
+  text-align: center;
+}
+
+#login-modal h2 {
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+#login-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+#login-modal label {
+  display: block;
+  text-align: left;
+  font-weight: 500;
+  font-size: var(--text-sm);
+}
+
+#login-modal input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: var(--text-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+#login-modal input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+#login-modal button {
+  margin-top: var(--spacing-md);
+}
+
+#login-modal p {
+  margin-top: 1.5rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+}
+
+#login-modal p a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+
 /* Footer */
 .site-footer {
   background-color: #2d2d2d;
