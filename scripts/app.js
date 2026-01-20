@@ -86,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mobile Nav
     navToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
+        const isExpanded = mainNav.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', isExpanded);
     });
 
     // Category Filter
