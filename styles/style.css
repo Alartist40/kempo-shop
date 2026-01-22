@@ -54,6 +54,17 @@ a:hover {
   opacity: 0.8;
 }
 
+/* Accessibility */
+:is(a, button, input):focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--color-bg-body);
+}
+
+.close-modal:focus-visible {
+  outline-offset: 4px;
+}
+
 ul {
   list-style: none;
 }
@@ -342,6 +353,41 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Login Modal Specifics */
+#login-modal .modal-content {
+  max-width: 400px;
+  text-align: center;
+}
+
+#login-modal h2 {
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+#login-modal input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#login-modal .btn-primary {
+  margin-top: 1rem;
+}
+
+#login-modal p {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+#login-modal p a {
+  color: var(--color-primary);
+  text-decoration: underline;
 }
 
 #modal-details {
