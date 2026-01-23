@@ -22,7 +22,7 @@
         <div class="header-actions">
           <button id="lang-toggle" class="btn-lang">English</button>
           <button id="login-btn" class="btn-login">ログイン</button>
-          <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+          <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">☰</button>
         </div>
       </div>
       <nav id="main-nav" class="main-nav">
@@ -95,16 +95,17 @@
 
   <!-- Login Modal -->
   <div id="login-modal" class="modal-overlay">
-    <div class="modal-content" style="max-width: 400px; text-align: center;">
+    <div class="modal-content">
       <button class="close-modal">&times;</button>
-      <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">会員ログイン</h2>
-      <input type="text" placeholder="メールアドレス / ID"
-        style="width: 100%; margin: 10px 0; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;">
-      <input type="password" placeholder="パスワード"
-        style="width: 100%; margin: 10px 0; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;">
-      <button class="btn-primary" style="margin-top: 1rem;">ログイン</button>
-      <p style="margin-top: 1.5rem; font-size: 0.875rem; color: #666;">アカウントをお持ちでないですか？ <a href="#"
-          style="color: var(--color-primary); text-decoration: underline;">新規登録</a></p>
+      <h2>会員ログイン</h2>
+      <form>
+        <label for="email" class="sr-only">メールアドレス / ID</label>
+        <input type="text" id="email" placeholder="メールアドレス / ID" autocomplete="email" required>
+        <label for="password" class="sr-only">パスワード</label>
+        <input type="password" id="password" placeholder="パスワード" autocomplete="current-password" required>
+        <button class="btn-primary">ログイン</button>
+      </form>
+      <p>アカウントをお持ちでないですか？ <a href="#">新規登録</a></p>
     </div>
   </div>
 
