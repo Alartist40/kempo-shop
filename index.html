@@ -98,9 +98,13 @@
     <div class="modal-content">
       <button class="close-modal">&times;</button>
       <h2>会員ログイン</h2>
-      <input type="text" placeholder="メールアドレス / ID">
-      <input type="password" placeholder="パスワード">
-      <button class="btn-primary">ログイン</button>
+      <form>
+        <label for="email" class="sr-only">メールアドレス / ID</label>
+        <input type="text" id="email" placeholder="メールアドレス / ID" autocomplete="email" required>
+        <label for="password" class="sr-only">パスワード</label>
+        <input type="password" id="password" placeholder="パスワード" autocomplete="current-password" required>
+        <button class="btn-primary">ログイン</button>
+      </form>
       <p>アカウントをお持ちでないですか？ <a href="#">新規登録</a></p>
     </div>
   </div>
