@@ -378,9 +378,22 @@ img {
   margin-bottom: 1.5rem;
 }
 
+#login-modal label {
+  display: block;
+  text-align: left;
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Space out the second label */
+#login-modal label[for="password"] {
+  margin-top: var(--spacing-sm);
+}
+
 #login-modal input {
   width: 100%;
-  margin: 10px 0;
+  margin: 0; /* Remove default margin */
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 6px;
