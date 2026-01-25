@@ -28,7 +28,7 @@ export function createSidebarCategories(lang = 'ja') {
   return html;
 }
 
-export function openProductModal(productId, lang = 'ja') {
+export function openProductModal(productId, lang = 'ja', openModal) {
   const product = products.find(p => p.id === parseInt(productId));
   if (!product) return;
 
@@ -63,5 +63,5 @@ export function openProductModal(productId, lang = 'ja') {
     alert(lang === 'ja' ? `${qty}個をカートに追加しました！` : `Added ${qty} to cart!`);
   });
 
-  overlay.classList.add('active');
+  openModal(overlay);
 }

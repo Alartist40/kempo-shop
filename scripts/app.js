@@ -3,6 +3,7 @@ import { createProductCard, createSidebarCategories, openProductModal } from './
 
 let currentLang = 'ja';
 let currentCategory = 'all';
+let lastFocusedElement = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -35,10 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
         renderApp();
     });
 
+    function openModal(modalElement) {
+        lastFocusedElement = document.activeElement;
+        modalElement.classList.add('active');
+    }
+
+    function closeModal() {
+        const activeModal = document.querySelector('.modal-overlay.active');
+        if (activeModal) {
+            activeModal.classList.remove('active');
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+    }
+
     // Login Modal
     loginBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        loginModal.classList.add('active');
+        openModal(loginModal);
     });
 
     // Nav Actions
@@ -52,18 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
     navCompany.addEventListener('click', (e) => {
         e.preventDefault();
         renderCompanyModal();
-        companyModal.classList.add('active');
+        openModal(companyModal);
     });
 
     navGuide.addEventListener('click', (e) => {
         e.preventDefault();
         renderGuideModal();
-        guideModal.classList.add('active');
+        openModal(guideModal);
     });
 
     navRegister.addEventListener('click', (e) => {
         e.preventDefault();
-        loginModal.classList.add('active');
+        openModal(loginModal);
     });
 
     navCart.addEventListener('click', (e) => {
@@ -73,14 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close Modals
     closeModalBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-        });
+        btn.addEventListener('click', closeModal);
     });
 
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal-overlay')) {
-            e.target.classList.remove('active');
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
         }
     });
 
@@ -153,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             productGrid.appendChild(card);
 
             card.addEventListener('click', () => {
-                openProductModal(product.id, currentLang);
+                openProductModal(product.id, currentLang, openModal);
             });
         });
     }
