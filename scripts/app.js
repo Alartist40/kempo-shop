@@ -36,11 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
         renderApp();
     });
 
+    /**
+     * Show the provided modal element and remember the element that was focused before opening.
+     * 
+     * Remembers the currently focused element so focus can be restored when the modal is closed,
+     * and activates the modal element so it becomes visible and interactive.
+     * @param {Element} modalElement - The modal overlay element to activate (will receive the active display state).
+     */
     function openModal(modalElement) {
         lastFocusedElement = document.activeElement;
         modalElement.classList.add('active');
     }
 
+    /**
+     * Hides the currently active modal overlay and restores focus to the element that was focused before the modal opened.
+     *
+     * Removes the modal's active state (making it hidden) and, if a previously focused element is recorded, moves focus back to it.
+     */
     function closeModal() {
         const activeModal = document.querySelector('.modal-overlay.active');
         if (activeModal) {
@@ -160,6 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
         renderProducts();
     }
 
+    /**
+     * Render product cards into the product grid for the currently selected category and language.
+     *
+     * Filters the product list by `currentCategory` (when not "all"), creates a card for each filtered product
+     * using the current language, appends cards to `productGrid`, and attaches click handlers that open the
+     * product detail modal for the clicked product.
+     */
     function renderProducts() {
         productGrid.innerHTML = '';
 

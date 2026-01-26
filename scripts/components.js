@@ -19,6 +19,11 @@ export function createProductCard(product, lang = 'ja') {
   return div;
 }
 
+/**
+ * Builds HTML list items for the sidebar category navigation in the specified language.
+ * @param {string} lang - Language code used to localize category labels (e.g., 'ja').
+ * @returns {string} A concatenated string of `<li>` elements for each category, including an active "All products" item.
+ */
 export function createSidebarCategories(lang = 'ja') {
   const t = translations[lang];
   let html = `<li><a href="#" data-category="all" class="active">${t.allProducts}</a></li>`;
@@ -28,6 +33,17 @@ export function createSidebarCategories(lang = 'ja') {
   return html;
 }
 
+/**
+ * Populate and open the product detail modal for the specified product and language.
+ *
+ * If the product ID does not match any product, the function exits without modifying the UI.
+ * The function fills modal content (image, category, name, price, description, quantity selector)
+ * and attaches a click handler to the add-to-cart button that shows a localized confirmation alert.
+ *
+ * @param {(number|string)} productId - The product identifier (number or numeric string).
+ * @param {string} [lang='ja'] - Language code to select localized product content and translations.
+ * @param {(overlay: HTMLElement) => void} openModal - Callback invoked with the modal overlay element to display the modal.
+ */
 export function openProductModal(productId, lang = 'ja', openModal) {
   const product = products.find(p => p.id === parseInt(productId));
   if (!product) return;
