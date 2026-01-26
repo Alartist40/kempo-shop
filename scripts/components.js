@@ -28,6 +28,13 @@ export function createSidebarCategories(lang = 'ja') {
   return html;
 }
 
+/**
+ * Open and populate the product detail modal for the given product id.
+ *
+ * Populates the modal with localized product information, assigns ARIA attributes for the modal title and description, attaches the add-to-cart click handler (reads quantity from `#qty-input` and shows an alert), and activates the modal overlay. If no matching product is found, the function exits without side effects.
+ * @param {number|string} productId - Product id (or string) identifying which product to display.
+ * @param {string} [lang='ja'] - Language code used to select localized product fields and translations.
+ */
 export function openProductModal(productId, lang = 'ja') {
   const product = products.find(p => p.id === parseInt(productId));
   if (!product) return;

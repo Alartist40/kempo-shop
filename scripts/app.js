@@ -157,6 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /**
+     * Populate the company modal with localized content and update ARIA attributes for accessibility.
+     *
+     * Inserts the localized title, subtitle, and company details into the #company-content container
+     * and sets `aria-labelledby` and `aria-describedby` on the modal content element to point to those headings.
+     */
     function renderCompanyModal() {
         const t = translations[currentLang];
         const modalContent = companyModal.querySelector('.modal-content');
@@ -176,6 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
         modalContent.setAttribute('aria-describedby', descId);
     }
 
+    /**
+     * Populate the guide modal with localized content and update its accessibility attributes.
+     *
+     * Inserts localized headings and paragraphs into the #guide-content container based on the currentLang state,
+     * and sets `aria-labelledby` and `aria-describedby` on the modal content to reference the inserted heading IDs.
+     */
     function renderGuideModal() {
         const t = translations[currentLang];
         const modalContent = guideModal.querySelector('.modal-content');
