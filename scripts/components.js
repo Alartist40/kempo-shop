@@ -6,6 +6,7 @@ export function createProductCard(product, lang = 'ja') {
   const div = document.createElement('div');
   div.className = 'product-card';
   div.dataset.id = product.id;
+  div.setAttribute('tabindex', '0');
   div.innerHTML = `
     <div class="product-image">
       <img src="${product.image}" alt="${content.name}" loading="lazy">
@@ -64,4 +65,5 @@ export function openProductModal(productId, lang = 'ja') {
   });
 
   overlay.classList.add('active');
+  overlay.querySelector('.close-modal').focus();
 }

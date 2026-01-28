@@ -3,6 +3,7 @@ import { createProductCard, createSidebarCategories, openProductModal } from './
 
 let currentLang = 'ja';
 let currentCategory = 'all';
+let elementToFocusOnClose;
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -38,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Login Modal
     loginBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         loginModal.classList.add('active');
+        loginModal.querySelector('.close-modal').focus();
     });
 
     // Nav Actions
@@ -51,19 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navCompany.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         renderCompanyModal();
         companyModal.classList.add('active');
+        companyModal.querySelector('.close-modal').focus();
     });
 
     navGuide.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         renderGuideModal();
         guideModal.classList.add('active');
+        guideModal.querySelector('.close-modal').focus();
     });
 
     navRegister.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         loginModal.classList.add('active');
+        loginModal.querySelector('.close-modal').focus();
     });
 
     navCart.addEventListener('click', (e) => {
@@ -75,12 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModalBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            if (elementToFocusOnClose) {
+                elementToFocusOnClose.focus();
+            }
         });
     });
 
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal-overlay')) {
             e.target.classList.remove('active');
+            if (elementToFocusOnClose) {
+                elementToFocusOnClose.focus();
+            }
         }
     });
 
@@ -153,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             productGrid.appendChild(card);
 
             card.addEventListener('click', () => {
+                elementToFocusOnClose = document.activeElement;
                 openProductModal(product.id, currentLang);
             });
         });
