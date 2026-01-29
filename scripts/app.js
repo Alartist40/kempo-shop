@@ -3,6 +3,7 @@ import { createProductCard, createSidebarCategories, openProductModal } from './
 
 let currentLang = 'ja';
 let currentCategory = 'all';
+let elementToFocusOnClose = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Login Modal
     loginBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         loginModal.classList.add('active');
     });
 
@@ -51,18 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navCompany.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         renderCompanyModal();
         companyModal.classList.add('active');
     });
 
     navGuide.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         renderGuideModal();
         guideModal.classList.add('active');
     });
 
     navRegister.addEventListener('click', (e) => {
         e.preventDefault();
+        elementToFocusOnClose = document.activeElement;
         loginModal.classList.add('active');
     });
 
@@ -73,14 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close Modals
     closeModalBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-        });
+        btn.addEventListener('click', closeActiveModal);
     });
 
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal-overlay')) {
-            e.target.classList.remove('active');
+            closeActiveModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeActiveModal();
         }
     });
 
@@ -91,6 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Category Filter
+    function closeActiveModal() {
+        const activeModal = document.querySelector('.modal-overlay.active');
+        if (activeModal) {
+            activeModal.classList.remove('active');
+            elementToFocusOnClose?.focus();
+        }
+    }
+
     catList.addEventListener('click', (e) => {
         e.preventDefault();
         if (e.target.tagName === 'A') {
@@ -153,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             productGrid.appendChild(card);
 
             card.addEventListener('click', () => {
+                elementToFocusOnClose = document.activeElement;
                 openProductModal(product.id, currentLang);
             });
         });
