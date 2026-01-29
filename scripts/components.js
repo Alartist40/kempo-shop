@@ -49,7 +49,7 @@ export function openProductModal(productId, lang = 'ja') {
       <p class="modal-description">${content.description}</p>
       
       <div class="quantity-selector">
-        <label>${t.quantity}</label>
+        <label for="qty-input">${t.quantity}</label>
         <input type="number" value="1" min="1" id="qty-input">
         <span class="stock-status">${t.inStock}</span>
       </div>
