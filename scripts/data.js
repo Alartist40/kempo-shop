@@ -168,7 +168,8 @@ export const translations = {
     nav: ["Home", "Company", "Guide", "Register", "Cart"],
     companyName: "Kempo Co., Ltd.",
     ceo: "CEO: Sheila Kawakami",
-    established: "Established: December 3, 2003"
+    established: "Established: December 3, 2003",
+    viewDetails: "View details"
   },
   ja: {
     siteTitle: "健歩 - 自然健康食品",
@@ -196,6 +197,7 @@ export const translations = {
     nav: ["ホーム", "会社概要", "ご利用案内", "会員登録", "カート"],
     companyName: "株式会社 健歩",
     ceo: "代表取締役: 川上シーラ",
-    established: "設立: 2003年12月3日"
+    established: "設立: 2003年12月3日",
+    viewDetails: "詳細を見る"
   }
 };

@@ -5,3 +5,9 @@
 **Action:** In `scripts/app.js`, I implemented this by:
 1. Storing `document.activeElement` in a variable (`elementToFocusOnClose`) before the modal opens.
 2. Using `elementToFocusOnClose?.focus()` in a unified `closeActiveModal()` function, which is triggered by the close button, overlay click, or the 'Escape' key. This ensures focus is always restored to the original trigger element, providing a seamless and accessible user experience.
+
+## 2024-07-23 - Accessibility: Focus Management when Opening Modals
+
+**Learning:** Managing focus *into* a modal is just as important as restoring it. When a modal opens, focus should immediately move to a primary interactive element (like the close button or the first input). This prevents keyboard focus from being "lost" in the background page, which is still active in the DOM but hidden from view.
+
+**Action:** In `scripts/app.js`, I updated all modal-opening event listeners to call `.focus()` on the modal's `.close-modal` button after the modal is activated. Combined with the previously implemented focus restoration, this creates a complete "focus trap" cycle that keeps users oriented.

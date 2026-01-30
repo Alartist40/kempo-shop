@@ -6,6 +6,9 @@ export function createProductCard(product, lang = 'ja') {
   const div = document.createElement('div');
   div.className = 'product-card';
   div.dataset.id = product.id;
+  div.tabIndex = 0;
+  div.role = 'button';
+  div.ariaLabel = `${content.name} - ${t.viewDetails}`;
   div.innerHTML = `
     <div class="product-image">
       <img src="${product.image}" alt="${content.name}" loading="lazy">
