@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         elementToFocusOnClose = document.activeElement;
         loginModal.classList.add('active');
+        loginModal.querySelector('.close-modal').focus();
     });
 
     // Nav Actions
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elementToFocusOnClose = document.activeElement;
         renderCompanyModal();
         companyModal.classList.add('active');
+        companyModal.querySelector('.close-modal').focus();
     });
 
     navGuide.addEventListener('click', (e) => {
@@ -63,12 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
         elementToFocusOnClose = document.activeElement;
         renderGuideModal();
         guideModal.classList.add('active');
+        guideModal.querySelector('.close-modal').focus();
     });
 
     navRegister.addEventListener('click', (e) => {
         e.preventDefault();
         elementToFocusOnClose = document.activeElement;
         loginModal.classList.add('active');
+        loginModal.querySelector('.close-modal').focus();
     });
 
     navCart.addEventListener('click', (e) => {
@@ -169,9 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = createProductCard(product, currentLang);
             productGrid.appendChild(card);
 
-            card.addEventListener('click', () => {
-                elementToFocusOnClose = document.activeElement;
+            const openModal = () => {
+                elementToFocusOnClose = card;
                 openProductModal(product.id, currentLang);
+                document.querySelector('#product-modal .close-modal').focus();
+            };
+
+            card.addEventListener('click', openModal);
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal();
+                }
             });
         });
     }
