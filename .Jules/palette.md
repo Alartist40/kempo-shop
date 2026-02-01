@@ -11,3 +11,7 @@
 **Learning:** Managing focus *into* a modal is just as important as restoring it. When a modal opens, focus should immediately move to a primary interactive element (like the close button or the first input). This prevents keyboard focus from being "lost" in the background page, which is still active in the DOM but hidden from view.
 
 **Action:** In `scripts/app.js`, I updated all modal-opening event listeners to call `.focus()` on the modal's `.close-modal` button after the modal is activated. Combined with the previously implemented focus restoration, this creates a complete "focus trap" cycle that keeps users oriented.
+
+## 2024-07-24 - Interaction: Non-blocking "Add to Cart" Feedback
+**Learning:** Replacing disruptive browser `alert()` dialogues with non-blocking, localized micro-interactions significantly improves the user flow. Combining visual feedback (button state/color) with auditory feedback (ARIA live regions) ensures the enhancement is delightful for all users, including those using assistive technologies.
+**Action:** Implemented a feedback loop in `scripts/components.js` that changes button text to "Added!", applies a success color, and announces the action via a hidden `#live-region` in `index.html`. The state automatically reverts after 2 seconds to keep the interface ready for the next interaction.

@@ -61,9 +61,26 @@ export function openProductModal(productId, lang = 'ja') {
     </div>
   `;
 
-  document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+  document.getElementById('add-to-cart-btn').addEventListener('click', (e) => {
+    const btn = e.currentTarget;
     const qty = document.getElementById('qty-input').value;
-    alert(lang === 'ja' ? `${qty}個をカートに追加しました！` : `Added ${qty} to cart!`);
+    const originalText = btn.textContent;
+    const announcement = lang === 'ja' ? `${qty}個をカートに追加しました！` : `Added ${qty} to cart!`;
+
+    // UI Feedback
+    btn.textContent = t.addedToCart;
+    btn.classList.add('btn-success');
+    btn.disabled = true;
+
+    // Accessibility Announcement
+    const liveRegion = document.getElementById('live-region');
+    if (liveRegion) liveRegion.textContent = announcement;
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.classList.remove('btn-success');
+      btn.disabled = false;
+    }, 2000);
   });
 
   overlay.classList.add('active');
