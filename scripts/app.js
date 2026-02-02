@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainNav = document.getElementById('main-nav');
     const langToggleBtn = document.getElementById('lang-toggle');
     const loginBtn = document.getElementById('login-btn');
+    let cartTimeout;
 
     // Nav Links
     const navHome = document.getElementById('nav-home');
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langToggleBtn.addEventListener('click', () => {
         currentLang = currentLang === 'ja' ? 'en' : 'ja';
         langToggleBtn.textContent = currentLang === 'ja' ? 'English' : '日本語';
+        document.documentElement.lang = currentLang;
         renderApp();
     });
 
@@ -42,6 +44,32 @@ document.addEventListener('DOMContentLoaded', () => {
         elementToFocusOnClose = document.activeElement;
         loginModal.classList.add('active');
         loginModal.querySelector('.close-modal').focus();
+    });
+
+    // Login Form Feedback
+    const loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const t = translations[currentLang];
+        const submitBtn = loginForm.querySelector('button');
+        const originalText = submitBtn.textContent;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = t.loggingIn;
+
+        setTimeout(() => {
+            submitBtn.textContent = t.loginSuccess;
+            document.getElementById('live-region').textContent = t.loginSuccess;
+
+            setTimeout(() => {
+                closeActiveModal();
+                // Reset form for next time
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+                loginForm.reset();
+                document.getElementById('live-region').textContent = '';
+            }, 1000);
+        }, 1000);
     });
 
     // Nav Actions
@@ -77,7 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navCart.addEventListener('click', (e) => {
         e.preventDefault();
-        alert(currentLang === 'ja' ? 'カートは空です' : 'Your cart is empty');
+        const t = translations[currentLang];
+        clearTimeout(cartTimeout);
+
+        navCart.textContent = t.cartEmpty;
+        document.getElementById('live-region').textContent = t.cartEmptyMsg;
+
+        cartTimeout = setTimeout(() => {
+            navCart.textContent = t.nav[4];
+            document.getElementById('live-region').textContent = '';
+        }, 2000);
     });
 
     // Close Modals
@@ -121,6 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             currentCategory = e.target.dataset.category;
             renderProducts();
+
+            // Announce to screen readers
+            const categoryName = e.target.textContent;
+            const announcement = currentLang === 'ja' ? `${categoryName}を表示しています` : `Showing ${categoryName}`;
+            document.getElementById('live-region').textContent = announcement;
         }
     });
 

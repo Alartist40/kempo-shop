@@ -170,7 +170,11 @@ export const translations = {
     ceo: "CEO: Sheila Kawakami",
     established: "Established: December 3, 2003",
     viewDetails: "View details",
-    added: "Added! ✓"
+    added: "Added! ✓",
+    cartEmpty: "Empty",
+    cartEmptyMsg: "Your cart is empty",
+    loggingIn: "Logging in...",
+    loginSuccess: "Success!"
   },
   ja: {
     siteTitle: "健歩 - 自然健康食品",
@@ -200,6 +204,10 @@ export const translations = {
     ceo: "代表取締役: 川上シーラ",
     established: "設立: 2003年12月3日",
     viewDetails: "詳細を見る",
-    added: "追加しました！ ✓"
+    added: "追加しました！ ✓",
+    cartEmpty: "空です",
+    cartEmptyMsg: "カートは空です",
+    loggingIn: "ログイン中...",
+    loginSuccess: "成功しました！"
   }
 };

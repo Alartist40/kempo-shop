@@ -17,3 +17,9 @@
 **Learning:** When replacing intrusive alerts with inline feedback (like button text changes), screen reader users may miss the update because focus doesn't automatically shift. A hidden ARIA live region (`aria-live="polite"`) is essential to announce these changes without disrupting the user's flow.
 
 **Action:** I added a hidden `div` with `aria-live="polite"` to `index.html` and updated it whenever the "Add to Cart" button feedback was triggered. This ensured both visual and auditory confirmation of the action.
+
+## 2026-02-01 - UX: Synchronization and Race Condition Prevention
+
+**Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
+
+**Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
