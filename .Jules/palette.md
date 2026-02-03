@@ -23,3 +23,12 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-02 - UX: Robust Mobile Navigation and Active State Feedback
+
+**Learning:** Mobile navigation menus should automatically close when a link is clicked or when the user clicks outside the menu. Additionally, using `aria-current="page"` is the standard for accessible navigation filtering, and transient success states (like color changes) provide vital visual feedback for async actions.
+
+**Action:**
+1. Implemented mobile nav auto-close on link click and click-outside using `e.target.closest('a')` and boundary checks in `scripts/app.js`.
+2. Added `aria-current="page"` to category filters to improve screen reader orientation.
+3. Created a reusable `.btn-success` class in `style.css` and applied it to login and "Add to Cart" buttons to provide delightful visual confirmation of success.

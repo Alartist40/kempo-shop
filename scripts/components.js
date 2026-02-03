@@ -69,11 +69,13 @@ export function openProductModal(productId, lang = 'ja') {
 
     addBtn.textContent = successMsg;
     addBtn.disabled = true;
+    addBtn.classList.add('btn-success');
     document.getElementById('live-region').textContent = successMsg;
 
     setTimeout(() => {
       addBtn.textContent = originalText;
       addBtn.disabled = false;
+      addBtn.classList.remove('btn-success');
       document.getElementById('live-region').textContent = '';
     }, 2000);
   });

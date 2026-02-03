@@ -59,12 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             submitBtn.textContent = t.loginSuccess;
+            submitBtn.classList.add('btn-success');
             document.getElementById('live-region').textContent = t.loginSuccess;
 
             setTimeout(() => {
                 closeActiveModal();
                 // Reset form for next time
                 submitBtn.disabled = false;
+                submitBtn.classList.remove('btn-success');
                 submitBtn.textContent = originalText;
                 loginForm.reset();
                 document.getElementById('live-region').textContent = '';
@@ -126,6 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.classList.contains('modal-overlay')) {
             closeActiveModal();
         }
+        if (mainNav.classList.contains('active') && !mainNav.contains(e.target) && !navToggle.contains(e.target)) {
+            mainNav.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
     });
 
     document.addEventListener('keydown', (e) => {
@@ -140,6 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.setAttribute('aria-expanded', isExpanded);
     });
 
+    mainNav.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+            mainNav.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
     // Category Filter
     function closeActiveModal() {
         const activeModal = document.querySelector('.modal-overlay.active');
@@ -150,17 +163,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     catList.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (e.target.tagName === 'A') {
+        const link = e.target.closest('a');
+        if (link) {
+            e.preventDefault();
             // Update active state
-            catList.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-            e.target.classList.add('active');
+            catList.querySelectorAll('a').forEach(a => {
+                a.classList.remove('active');
+                a.removeAttribute('aria-current');
+            });
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
 
-            currentCategory = e.target.dataset.category;
+            currentCategory = link.dataset.category;
             renderProducts();
 
             // Announce to screen readers
-            const categoryName = e.target.textContent;
+            const categoryName = link.textContent;
             const announcement = currentLang === 'ja' ? `${categoryName}を表示しています` : `Showing ${categoryName}`;
             document.getElementById('live-region').textContent = announcement;
         }
@@ -197,7 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Set active category
         const activeLink = catList.querySelector(`[data-category="${currentCategory}"]`);
-        if (activeLink) activeLink.classList.add('active');
+        if (activeLink) {
+            activeLink.classList.add('active');
+            activeLink.setAttribute('aria-current', 'page');
+        }
 
         // Products
         renderProducts();
