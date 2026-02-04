@@ -151,12 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     catList.addEventListener('click', (e) => {
         e.preventDefault();
-        if (e.target.tagName === 'A') {
+        const link = e.target.closest('a');
+        if (link) {
             // Update active state
-            catList.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-            e.target.classList.add('active');
+            catList.querySelectorAll('a').forEach(a => {
+                const isActive = a === link;
+                a.classList.toggle('active', isActive);
+                if (isActive) a.setAttribute('aria-current', 'page');
+                else a.removeAttribute('aria-current');
+            });
 
-            currentCategory = e.target.dataset.category;
+            currentCategory = link.dataset.category;
             renderProducts();
 
             // Announce to screen readers
@@ -175,6 +180,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
         document.getElementById('cat-title').textContent = t.categoriesTitle;
         loginBtn.textContent = t.login;
+        langToggleBtn.setAttribute('aria-label', t.langToggleAria);
+        navToggle.setAttribute('aria-label', t.navToggleAria);
+
+        // Login Modal
+        document.getElementById('login-title').textContent = t.loginTitle;
+        document.getElementById('email-label').textContent = t.emailLabel;
+        document.getElementById('password-label').textContent = t.passwordLabel;
+        document.getElementById('login-submit-btn').textContent = t.loginSubmit;
+        document.getElementById('no-account-text').textContent = t.noAccount;
+        document.getElementById('register-link').textContent = t.registerLink;
 
         // Header Nav
         navHome.textContent = t.nav[0];
@@ -196,8 +211,12 @@ document.addEventListener('DOMContentLoaded', () => {
         catList.innerHTML = createSidebarCategories(currentLang);
 
         // Set active category
-        const activeLink = catList.querySelector(`[data-category="${currentCategory}"]`);
-        if (activeLink) activeLink.classList.add('active');
+        catList.querySelectorAll('a').forEach(a => {
+            const isActive = a.dataset.category === currentCategory;
+            a.classList.toggle('active', isActive);
+            if (isActive) a.setAttribute('aria-current', 'page');
+            else a.removeAttribute('aria-current');
+        });
 
         // Products
         renderProducts();

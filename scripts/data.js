@@ -174,7 +174,15 @@ export const translations = {
     cartEmpty: "Empty",
     cartEmptyMsg: "Your cart is empty",
     loggingIn: "Logging in...",
-    loginSuccess: "Success!"
+    loginSuccess: "Success!",
+    loginTitle: "Member Login",
+    emailLabel: "Email Address / ID",
+    passwordLabel: "Password",
+    noAccount: "Don't have an account?",
+    registerLink: "Register here",
+    loginSubmit: "Login",
+    langToggleAria: "Switch to 日本語",
+    navToggleAria: "Toggle navigation"
   },
   ja: {
     siteTitle: "健歩 - 自然健康食品",
@@ -208,6 +216,14 @@ export const translations = {
     cartEmpty: "空です",
     cartEmptyMsg: "カートは空です",
     loggingIn: "ログイン中...",
-    loginSuccess: "成功しました！"
+    loginSuccess: "成功しました！",
+    loginTitle: "会員ログイン",
+    emailLabel: "メールアドレス / ID",
+    passwordLabel: "パスワード",
+    noAccount: "アカウントをお持ちでないですか？",
+    registerLink: "新規登録",
+    loginSubmit: "ログイン",
+    langToggleAria: "Englishに切り替え",
+    navToggleAria: "ナビゲーションの切り替え"
   }
 };
