@@ -135,9 +135,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mobile Nav
-    navToggle.addEventListener('click', () => {
-        const isExpanded = mainNav.classList.toggle('active');
-        navToggle.setAttribute('aria-expanded', isExpanded);
+    const toggleNav = (forceState) => {
+        const expanded = forceState !== undefined ? forceState : !mainNav.classList.contains('active');
+        mainNav.classList.toggle('active', expanded);
+        navToggle.setAttribute('aria-expanded', expanded);
+    };
+
+    navToggle.addEventListener('click', () => toggleNav());
+
+    // Close mobile nav on link click or outside click
+    document.addEventListener('click', (e) => {
+        const isClickInsideNav = mainNav.contains(e.target);
+        const isClickOnToggle = navToggle.contains(e.target);
+        const isNavLink = e.target.closest('a') && isClickInsideNav;
+
+        if (mainNav.classList.contains('active')) {
+            if (isNavLink || (!isClickInsideNav && !isClickOnToggle)) {
+                toggleNav(false);
+            }
+        }
     });
 
     // Category Filter
