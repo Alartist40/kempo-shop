@@ -88,7 +88,7 @@
   <!-- Product Modal -->
   <div id="product-modal" class="modal-overlay">
     <div class="modal-content">
-      <button class="close-modal" aria-label="Close modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
+      <button class="close-modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
       <div id="modal-details"></div>
     </div>
   </div>
@@ -96,23 +96,23 @@
   <!-- Login Modal -->
   <div id="login-modal" class="modal-overlay">
     <div class="modal-content">
-      <button class="close-modal" aria-label="Close modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
-      <h2>会員ログイン</h2>
+      <button class="close-modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
+      <h2 id="login-title">会員ログイン</h2>
       <form id="login-form">
-        <label for="email">メールアドレス / ID</label>
+        <label for="email" id="email-label">メールアドレス / ID</label>
         <input type="text" id="email" autocomplete="email" required>
-        <label for="password">パスワード</label>
+        <label for="password" id="password-label">パスワード</label>
         <input type="password" id="password" autocomplete="current-password" required>
-        <button class="btn-primary">ログイン</button>
+        <button class="btn-primary" id="login-submit-btn">ログイン</button>
       </form>
-      <p>アカウントをお持ちでないですか？ <a href="#">新規登録</a></p>
+      <p id="register-prompt"><span id="no-account-text">アカウントをお持ちでないですか？</span> <a href="#" id="register-link">新規登録</a></p>
     </div>
   </div>
 
   <!-- Company Modal -->
   <div id="company-modal" class="modal-overlay">
     <div class="modal-content" style="max-width: 500px;">
-      <button class="close-modal" aria-label="Close modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
+      <button class="close-modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
       <div id="company-content"></div>
     </div>
   </div>
@@ -120,7 +120,7 @@
   <!-- Guide Modal -->
   <div id="guide-modal" class="modal-overlay">
     <div class="modal-content" style="max-width: 500px;">
-      <button class="close-modal" aria-label="Close modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
+      <button class="close-modal"><span class="sr-only">Close</span><span aria-hidden="true">&times;</span></button>
       <div id="guide-content"></div>
     </div>
   </div>
