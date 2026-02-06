@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-02 - UX: Robust Mobile Navigation Interaction
+
+**Learning:** Mobile navigation menus should be easily dismissible through common patterns: clicking a link, clicking outside the menu, or pressing the `Escape` key. Implementing these through a centralized `closeNav()` function ensures that state (like the 'active' class) and accessibility attributes (like `aria-expanded`) stay perfectly in sync.
+
+**Action:** In `scripts/app.js`, I refactored the navigation toggle and added event listeners for link clicks within the nav, clicks on the document body (excluding the toggle itself), and the `Escape` key. Each trigger calls a centralized `closeNav()` helper, ensuring a consistent and accessible experience across all interaction modes.
