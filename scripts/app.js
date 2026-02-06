@@ -126,18 +126,39 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.classList.contains('modal-overlay')) {
             closeActiveModal();
         }
+        // Close mobile nav when clicking outside
+        if (!mainNav.contains(e.target) && !navToggle.contains(e.target)) {
+            closeNav();
+        }
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeActiveModal();
+            closeNav();
         }
     });
 
     // Mobile Nav
-    navToggle.addEventListener('click', () => {
+    function toggleNav() {
         const isExpanded = mainNav.classList.toggle('active');
         navToggle.setAttribute('aria-expanded', isExpanded);
+    }
+
+    function closeNav() {
+        if (mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    navToggle.addEventListener('click', toggleNav);
+
+    // Close mobile nav when a link is clicked
+    mainNav.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+            closeNav();
+        }
     });
 
     // Category Filter
