@@ -59,12 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             submitBtn.textContent = t.loginSuccess;
+            submitBtn.classList.add('btn-success');
             document.getElementById('live-region').textContent = t.loginSuccess;
 
             setTimeout(() => {
                 closeActiveModal();
                 // Reset form for next time
                 submitBtn.disabled = false;
+                submitBtn.classList.remove('btn-success');
                 submitBtn.textContent = originalText;
                 loginForm.reset();
                 document.getElementById('live-region').textContent = '';
@@ -109,10 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(cartTimeout);
 
         navCart.textContent = t.cartEmpty;
+        navCart.classList.add('btn-success');
         document.getElementById('live-region').textContent = t.cartEmptyMsg;
 
         cartTimeout = setTimeout(() => {
             navCart.textContent = t.nav[4];
+            navCart.classList.remove('btn-success');
             document.getElementById('live-region').textContent = '';
         }, 2000);
     });

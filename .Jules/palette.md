@@ -23,3 +23,7 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-03-24 - [Button Feedback and Cursor Visibility]
+**Learning:** Using `pointer-events: none` on disabled buttons prevents the `not-allowed` cursor from appearing, as the element no longer captures mouse events.
+**Action:** When styling disabled buttons for UX, use `opacity` and `cursor: not-allowed` but avoid `pointer-events: none` if you want the custom cursor to be visible to users.
