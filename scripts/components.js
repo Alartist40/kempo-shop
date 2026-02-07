@@ -65,15 +65,17 @@ export function openProductModal(productId, lang = 'ja') {
   addBtn.addEventListener('click', () => {
     const qty = document.getElementById('qty-input').value;
     const originalText = addBtn.textContent;
-    const successMsg = lang === 'ja' ? `${qty}個を${t.added}` : `${t.added} ${qty}!`;
+    const successMsg = lang === 'ja' ? `${qty}個を${t.added}` : `${qty} item(s) ${t.added}`;
 
     addBtn.textContent = successMsg;
     addBtn.disabled = true;
+    addBtn.classList.add('btn-success');
     document.getElementById('live-region').textContent = successMsg;
 
     setTimeout(() => {
       addBtn.textContent = originalText;
       addBtn.disabled = false;
+      addBtn.classList.remove('btn-success');
       document.getElementById('live-region').textContent = '';
     }, 2000);
   });

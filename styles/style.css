@@ -350,6 +350,10 @@ img {
   padding: var(--spacing-xl);
 }
 
+.modal-content.modal-sm {
+  max-width: 500px;
+}
+
 .close-modal {
   position: absolute;
   top: var(--spacing-md);
@@ -484,6 +488,17 @@ img {
 
 .btn-primary:hover {
   background-color: var(--color-primary-dark);
+}
+
+.btn-primary:disabled,
+.btn-login:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-success {
+  background-color: var(--color-accent) !important;
+  color: white !important;
 }
 
 /* Footer */
