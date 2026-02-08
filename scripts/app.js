@@ -179,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('hero-title').textContent = t.heroTitle;
         document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
         document.getElementById('cat-title').textContent = t.categoriesTitle;
+        document.getElementById('skip-link').textContent = t.skipToContent;
         loginBtn.textContent = t.login;
         langToggleBtn.setAttribute('aria-label', t.langToggleAria);
         navToggle.setAttribute('aria-label', t.navToggleAria);

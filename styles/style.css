@@ -710,3 +710,24 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+/* Skip to Content Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  z-index: 2000;
+  transition: top 0.2s;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  font-size: var(--text-sm);
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
