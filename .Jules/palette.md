@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-02 - Accessibility: Skip-to-Content for Keyboard Navigation
+
+**Learning:** Large navigation headers can be a major barrier for keyboard and screen reader users, forcing them to tab through many links before reaching the page's core content. A skip-to-content link is a simple but high-impact accessibility feature that provides a shortcut to the main information.
+
+**Action:** I implemented a bilingual skip link as the first child of `<body>`. It is visually hidden until focused, and uses a JavaScript listener to programmatically move focus to the `#main-content` element (using `tabindex="-1"`) and provide a smooth scroll. This ensures the focus transition is reliable across all browsers.

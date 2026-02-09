@@ -30,6 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     renderApp();
 
+    // Skip Link Focus
+    const skipLink = document.getElementById('skip-link');
+    skipLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('main-content');
+        target.setAttribute('tabindex', '-1');
+        target.focus();
+        target.scrollIntoView({ behavior: 'smooth' });
+    });
+
     // Language Toggle
     langToggleBtn.addEventListener('click', () => {
         currentLang = currentLang === 'ja' ? 'en' : 'ja';
@@ -176,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Static Text
         document.title = t.siteTitle;
+        document.getElementById('skip-link').textContent = t.skipToContent;
         document.getElementById('hero-title').textContent = t.heroTitle;
         document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
         document.getElementById('cat-title').textContent = t.categoriesTitle;
