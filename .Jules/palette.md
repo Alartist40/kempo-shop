@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-01 - Accessibility: Skip Link and Localized Generic Actions
+
+**Learning:** Essential accessibility features like "Skip to Content" links and modal "Close" labels should be integrated into the centralized bilingual translation system to ensure a consistent experience for all users. Using `tabindex="-1"` on jump targets like `#main-content` is critical for ensuring that keyboard focus is correctly managed when the link is activated.
+
+**Action:** I implemented a "Skip to Content" link and localized all modal close buttons. I added `skipToContent` and `closeModal` keys to the `translations` object in `scripts/data.js` and updated `renderApp` in `scripts/app.js` to dynamically apply these translations. I also ensured the `<main>` element had the correct `id` and `tabindex` to serve as a reliable focus target.

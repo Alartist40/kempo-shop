@@ -176,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Static Text
         document.title = t.siteTitle;
+        document.getElementById('skip-link').textContent = t.skipToContent;
+        document.querySelectorAll('.close-modal .sr-only').forEach(el => el.textContent = t.closeModal);
         document.getElementById('hero-title').textContent = t.heroTitle;
         document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
         document.getElementById('cat-title').textContent = t.categoriesTitle;

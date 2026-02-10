@@ -67,6 +67,22 @@ a:hover {
   border-width: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  z-index: 1001;
+  transition: top 0.2s;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 :is(a, button, input, .product-card):focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;
