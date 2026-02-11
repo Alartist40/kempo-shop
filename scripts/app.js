@@ -75,8 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Nav Actions
     navHome.addEventListener('click', (e) => {
         e.preventDefault();
+        const t = translations[currentLang];
         currentCategory = 'all';
+        updateSidebarActiveState();
         renderProducts();
+        document.getElementById('live-region').textContent = currentLang === 'ja' ? `${t.allProducts}を表示しています` : `Showing ${t.allProducts}`;
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -149,19 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function updateSidebarActiveState() {
+        catList.querySelectorAll('a').forEach(a => {
+            const isActive = a.dataset.category === currentCategory;
+            a.classList.toggle('active', isActive);
+            if (isActive) a.setAttribute('aria-current', 'page');
+            else a.removeAttribute('aria-current');
+        });
+    }
+
     catList.addEventListener('click', (e) => {
         e.preventDefault();
         const link = e.target.closest('a');
         if (link) {
-            // Update active state
-            catList.querySelectorAll('a').forEach(a => {
-                const isActive = a === link;
-                a.classList.toggle('active', isActive);
-                if (isActive) a.setAttribute('aria-current', 'page');
-                else a.removeAttribute('aria-current');
-            });
-
             currentCategory = link.dataset.category;
+            updateSidebarActiveState();
             renderProducts();
 
             // Announce to screen readers
@@ -182,6 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
         loginBtn.textContent = t.login;
         langToggleBtn.setAttribute('aria-label', t.langToggleAria);
         navToggle.setAttribute('aria-label', t.navToggleAria);
+
+        // Localize Close Buttons
+        document.querySelectorAll('.close-modal .sr-only').forEach(span => {
+            span.textContent = t.close;
+        });
 
         // Login Modal
         document.getElementById('login-title').textContent = t.loginTitle;
@@ -211,12 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         catList.innerHTML = createSidebarCategories(currentLang);
 
         // Set active category
-        catList.querySelectorAll('a').forEach(a => {
-            const isActive = a.dataset.category === currentCategory;
-            a.classList.toggle('active', isActive);
-            if (isActive) a.setAttribute('aria-current', 'page');
-            else a.removeAttribute('aria-current');
-        });
+        updateSidebarActiveState();
 
         // Products
         renderProducts();

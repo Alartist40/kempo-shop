@@ -350,6 +350,10 @@ img {
   padding: var(--spacing-xl);
 }
 
+.modal-overlay.modal-sm .modal-content {
+  max-width: 500px;
+}
+
 .close-modal {
   position: absolute;
   top: var(--spacing-md);

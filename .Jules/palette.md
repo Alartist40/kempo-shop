@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-05-22 - Interaction: Synchronizing Global Navigation with Local State
+
+**Learning:** When an application has multiple ways to trigger the same state change (e.g., a top-level "Home" link and a sidebar "All Products" link), it is critical to synchronize the visual state of all related components. Failing to update the "active" indicator in a sidebar when navigating via the header creates a confusing "split state" where the user sees one category highlighted but another set of products displayed.
+
+**Action:** I refactored the sidebar active state logic into a reusable `updateSidebarActiveState()` function in `scripts/app.js`. By calling this function in both the top-level navigation listeners and the sidebar click handlers, the UI now remains consistent across all entry points, improving the overall sense of robustness and reliability.
