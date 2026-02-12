@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-12 - UX: Centralized Navigation and Sidebar Synchronization
+
+**Learning:** In a single-page style application where navigation links (like 'Home') and filtering components (like a sidebar) both affect the same state, it is critical to centralize the UI synchronization logic. Relying on scattered, manual updates leads to visual state mismatches.
+
+**Action:** I refactored the sidebar's active-state logic into a centralized `updateSidebarActiveState()` function in `scripts/app.js`. This function is now called by all relevant triggers—including the 'Home' navigation link and the category filter links—ensuring the 'active' class and `aria-current="page"` attribute are always consistent with the current application state.

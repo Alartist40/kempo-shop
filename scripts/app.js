@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navHome.addEventListener('click', (e) => {
         e.preventDefault();
         currentCategory = 'all';
+        updateSidebarActiveState();
         renderProducts();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -149,19 +150,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function updateSidebarActiveState() {
+        catList.querySelectorAll('a').forEach(a => {
+            const isActive = a.dataset.category === currentCategory;
+            a.classList.toggle('active', isActive);
+            if (isActive) a.setAttribute('aria-current', 'page');
+            else a.removeAttribute('aria-current');
+        });
+    }
+
     catList.addEventListener('click', (e) => {
         e.preventDefault();
         const link = e.target.closest('a');
         if (link) {
-            // Update active state
-            catList.querySelectorAll('a').forEach(a => {
-                const isActive = a === link;
-                a.classList.toggle('active', isActive);
-                if (isActive) a.setAttribute('aria-current', 'page');
-                else a.removeAttribute('aria-current');
-            });
-
             currentCategory = link.dataset.category;
+            updateSidebarActiveState();
             renderProducts();
 
             // Announce to screen readers
@@ -176,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Static Text
         document.title = t.siteTitle;
+        document.getElementById('skip-link').textContent = t.skipToContent;
         document.getElementById('hero-title').textContent = t.heroTitle;
         document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
         document.getElementById('cat-title').textContent = t.categoriesTitle;
@@ -209,14 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Sidebar
         catList.innerHTML = createSidebarCategories(currentLang);
-
-        // Set active category
-        catList.querySelectorAll('a').forEach(a => {
-            const isActive = a.dataset.category === currentCategory;
-            a.classList.toggle('active', isActive);
-            if (isActive) a.setAttribute('aria-current', 'page');
-            else a.removeAttribute('aria-current');
-        });
+        updateSidebarActiveState();
 
         // Products
         renderProducts();

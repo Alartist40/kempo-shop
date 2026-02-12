@@ -181,6 +181,7 @@ export const translations = {
     noAccount: "Don't have an account?",
     registerLink: "Register here",
     loginSubmit: "Login",
+    skipToContent: "Skip to Content",
     langToggleAria: "Switch to 日本語",
     navToggleAria: "Toggle navigation"
   },
@@ -223,6 +224,7 @@ export const translations = {
     noAccount: "アカウントをお持ちでないですか？",
     registerLink: "新規登録",
     loginSubmit: "ログイン",
+    skipToContent: "本文へスキップ",
     langToggleAria: "Englishに切り替え",
     navToggleAria: "ナビゲーションの切り替え"
   }
