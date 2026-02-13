@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-02 - UX: Floating Action Buttons and Global Transitions
+
+**Learning:** Micro-UX improvements like a "Back to Top" button benefit from global CSS transitions (like `scroll-behavior: smooth` on `html`) to provide a consistent feel across the entire site. Condensing code by combining CSS properties and using modern JS (like `classList.toggle`) allows adding these features while staying within strict line-count limits without sacrificing accessibility.
+
+**Action:** I implemented a localized, accessible "Back to Top" button by condensing its styles and logic to under 25 lines of new code, while also enabling global smooth scrolling to enhance all internal site navigation.
