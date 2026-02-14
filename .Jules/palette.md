@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-14 - UX: Enhancing Navigation on Long Pages
+
+**Learning:** For e-commerce sites with long product lists, a "Back to Top" button is an essential micro-UX improvement. It should be localized, keyboard accessible (using `tabindex` and `aria-hidden` management), and visually responsive to provide a consistent experience across all devices.
+
+**Action:** I implemented a floating "Back to Top" button that appears after 300px of scrolling. Its visibility and labels are managed dynamically in `scripts/app.js` using state from `scripts/data.js`. I used `opacity` and `pointer-events` for smooth transitions while ensuring the button is not focusable when hidden.
