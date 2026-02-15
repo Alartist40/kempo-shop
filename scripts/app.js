@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainNav = document.getElementById('main-nav');
     const langToggleBtn = document.getElementById('lang-toggle');
     const loginBtn = document.getElementById('login-btn');
+    const backToTopBtn = document.getElementById('back-to-top');
     let cartTimeout;
 
     // Nav Links
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navHome.addEventListener('click', (e) => {
         e.preventDefault();
         currentCategory = 'all';
-        renderProducts();
+        renderApp();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -140,6 +141,24 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.setAttribute('aria-expanded', isExpanded);
     });
 
+    // Back to Top
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                const isVisible = window.scrollY > 300;
+                backToTopBtn.classList.toggle('visible', isVisible);
+                backToTopBtn.setAttribute('aria-hidden', !isVisible);
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     // Category Filter
     function closeActiveModal() {
         const activeModal = document.querySelector('.modal-overlay.active');
@@ -182,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginBtn.textContent = t.login;
         langToggleBtn.setAttribute('aria-label', t.langToggleAria);
         navToggle.setAttribute('aria-label', t.navToggleAria);
+        backToTopBtn.setAttribute('aria-label', t.backToTop);
 
         // Login Modal
         document.getElementById('login-title').textContent = t.loginTitle;

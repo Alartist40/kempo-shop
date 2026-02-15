@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-15 - Accessibility: Managing Keyboard Focus for Hidden Elements
+
+**Learning:** Using `opacity: 0` and `pointer-events: none` is insufficient for hiding elements from keyboard users. Focusable elements like buttons must be removed from the tab order using `visibility: hidden` or `display: none` to avoid "invisible focus" traps.
+
+**Action:** In `styles/style.css`, I updated the `.back-to-top` button to use `visibility: hidden` when inactive. This correctly hides it from screen readers and keyboard navigation while still allowing for a smooth opacity transition when it becomes `visible`.
