@@ -23,3 +23,9 @@
 **Learning:** Small UX touches like syncing the `<html>` lang attribute and preventing race conditions in temporary UI feedback are critical for a polished feel. Restoring text from a centralized state (like `translations`) is safer than using a local `originalText` variable which can be corrupted by repeated interactions.
 
 **Action:** I updated the language toggle to sync `document.documentElement.lang`, and used `clearTimeout` along with centralized translations to manage the "Cart" link feedback reliably even under rapid-click scenarios.
+
+## 2026-02-02 - UX: Accessible "Back to Top" and Motion Preferences
+
+**Learning:** Adding navigational shortcuts like a "Back to Top" button significantly improves UX for long pages, but they must be implemented with accessibility in mind. This includes using sufficient color contrast (meeting WCAG 3:1 for icons) and respecting user motion preferences. Global smooth scrolling can be jarring or cause motion sickness for some users, so it should be optional.
+
+**Action:** I implemented a localized "Back to Top" button using `var(--color-primary-dark)` for better contrast against white text. I also wrapped the `scroll-behavior: smooth` rule in a `@media (prefers-reduced-motion: no-preference)` query, ensuring that users who prefer reduced motion are not forced into animated transitions.
