@@ -29,3 +29,9 @@
 **Learning:** Adding navigational shortcuts like a "Back to Top" button significantly improves UX for long pages, but they must be implemented with accessibility in mind. This includes using sufficient color contrast (meeting WCAG 3:1 for icons) and respecting user motion preferences. Global smooth scrolling can be jarring or cause motion sickness for some users, so it should be optional.
 
 **Action:** I implemented a localized "Back to Top" button using `var(--color-primary-dark)` for better contrast against white text. I also wrapped the `scroll-behavior: smooth` rule in a `@media (prefers-reduced-motion: no-preference)` query, ensuring that users who prefer reduced motion are not forced into animated transitions.
+
+## 2026-02-03 - UX: Consistent State and Focus Resilience
+
+**Learning:** Ensuring a consistent UI state across different navigation paths (e.g., sidebar vs. header nav) is crucial for a polished feel. Additionally, defensive programming with DOM elements prevents runtime crashes if elements are removed or renamed, especially in shared script files.
+
+**Action:** I implemented a centralized `updateSidebarActiveState` function in `scripts/app.js` to synchronize the sidebar's 'active' class and `aria-current="page"` attribute with the `currentCategory`, fixing a bug where navigating 'Home' didn't reset the sidebar. I also added programmatic focus management to the 'Back to Top' button and a placeholder interaction for the registration link, using optional chaining and null checks to ensure script resilience.
