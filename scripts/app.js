@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const langToggleBtn = document.getElementById('lang-toggle');
     const loginBtn = document.getElementById('login-btn');
     const backToTopBtn = document.getElementById('back-to-top');
+    const registerLink = document.getElementById('register-link');
     let cartTimeout;
 
     // Nav Links
@@ -77,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navHome.addEventListener('click', (e) => {
         e.preventDefault();
         currentCategory = 'all';
+        updateSidebarActiveState();
         renderProducts();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -118,6 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     });
 
+    // Register Link Placeholder
+    if (registerLink) {
+        registerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const t = translations[currentLang];
+            document.getElementById('email')?.focus();
+            const liveRegion = document.getElementById('live-region');
+            if (liveRegion) liveRegion.textContent = t.registerLink;
+        });
+    }
+
     // Close Modals
     closeModalBtns.forEach(btn => {
         btn.addEventListener('click', closeActiveModal);
@@ -145,7 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         backToTopBtn.classList.toggle('active', window.scrollY > 300);
     }, { passive: true });
-    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.querySelector('.logo')?.focus();
+    });
 
     // Category Filter
     function closeActiveModal() {
@@ -156,19 +172,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function updateSidebarActiveState() {
+        catList.querySelectorAll('a').forEach(a => {
+            const isActive = a.dataset.category === currentCategory;
+            a.classList.toggle('active', isActive);
+            if (isActive) a.setAttribute('aria-current', 'page');
+            else a.removeAttribute('aria-current');
+        });
+    }
+
     catList.addEventListener('click', (e) => {
         e.preventDefault();
         const link = e.target.closest('a');
         if (link) {
-            // Update active state
-            catList.querySelectorAll('a').forEach(a => {
-                const isActive = a === link;
-                a.classList.toggle('active', isActive);
-                if (isActive) a.setAttribute('aria-current', 'page');
-                else a.removeAttribute('aria-current');
-            });
-
             currentCategory = link.dataset.category;
+            updateSidebarActiveState();
             renderProducts();
 
             // Announce to screen readers
@@ -218,14 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Sidebar
         catList.innerHTML = createSidebarCategories(currentLang);
-
-        // Set active category
-        catList.querySelectorAll('a').forEach(a => {
-            const isActive = a.dataset.category === currentCategory;
-            a.classList.toggle('active', isActive);
-            if (isActive) a.setAttribute('aria-current', 'page');
-            else a.removeAttribute('aria-current');
-        });
+        updateSidebarActiveState();
 
         // Products
         renderProducts();
