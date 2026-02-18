@@ -29,3 +29,9 @@
 **Learning:** Adding navigational shortcuts like a "Back to Top" button significantly improves UX for long pages, but they must be implemented with accessibility in mind. This includes using sufficient color contrast (meeting WCAG 3:1 for icons) and respecting user motion preferences. Global smooth scrolling can be jarring or cause motion sickness for some users, so it should be optional.
 
 **Action:** I implemented a localized "Back to Top" button using `var(--color-primary-dark)` for better contrast against white text. I also wrapped the `scroll-behavior: smooth` rule in a `@media (prefers-reduced-motion: no-preference)` query, ensuring that users who prefer reduced motion are not forced into animated transitions.
+
+## 2026-02-03 - Accessibility: Skip Links and Focus Restoration
+
+**Learning:** "Skip to content" links are essential for keyboard users to bypass repetitive header navigation. Additionally, when a navigational shortcut like "Back to Top" is used, programmatically moving focus to the top of the page (e.g., the logo) provides a clear starting point for re-navigation, preventing focus from being "lost" at the bottom of the page.
+
+**Action:** I added a bilingual "Skip to content" link in `index.html` (styled to show on focus in `style.css`) and updated the "Back to Top" listener in `app.js` to call `.focus()` on the site logo.
