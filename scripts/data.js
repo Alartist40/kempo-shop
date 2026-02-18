@@ -184,7 +184,8 @@ export const translations = {
     langToggleAria: "Switch to 日本語",
     navToggleAria: "Toggle navigation",
     close: "Close",
-    backToTop: "Back to top"
+    backToTop: "Back to top",
+    skipToContent: "Skip to content"
   },
   ja: {
     siteTitle: "健歩 - 自然健康食品",
@@ -228,6 +229,7 @@ export const translations = {
     langToggleAria: "Englishに切り替え",
     navToggleAria: "ナビゲーションの切り替え",
     close: "閉じる",
-    backToTop: "トップへ戻る"
+    backToTop: "トップへ戻る",
+    skipToContent: "本文へスキップ"
   }
 };

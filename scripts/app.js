@@ -145,7 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         backToTopBtn.classList.toggle('active', window.scrollY > 300);
     }, { passive: true });
-    backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.querySelector('.logo')?.focus();
+    });
 
     // Category Filter
     function closeActiveModal() {
@@ -182,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const t = translations[currentLang];
 
         // Update Static Text
+        document.querySelector('.skip-link').textContent = t.skipToContent;
         document.title = t.siteTitle;
         document.getElementById('hero-title').textContent = t.heroTitle;
         document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
